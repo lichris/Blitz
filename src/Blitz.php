@@ -78,7 +78,7 @@ class Blitz
     protected $relations;
 
     /**
-     * 관계 모델을 불러올 최종 쿼리 배열
+     * 관계 모델을 불러올 최종 쿼리 배열.
      *
      * @var array
      */
@@ -326,7 +326,7 @@ class Blitz
     }
 
     /**
-     * 현재까지 저장된 query 를 리턴합니다
+     * 현재까지 저장된 query 를 리턴합니다.
      *
      * @return Builder
      */
@@ -336,7 +336,7 @@ class Blitz
     }
 
     /**
-     * 저장된 $models 를 리턴합니다
+     * 저장된 $models 를 리턴합니다.
      *
      * @return Model|Collection
      */
@@ -420,9 +420,6 @@ class Blitz
 
     // TODO : 패지네이트 구현 필요
 
-    /**
-     *
-     */
     protected function paginate()
     {
     }
@@ -543,7 +540,7 @@ class Blitz
             $this->models = call_user_func_array(
                 [
                     $this,
-                    Str::camel($relation)
+                    Str::camel($relation),
                 ],
                 func_get_args()
             )->get($this->models);
@@ -645,8 +642,12 @@ class Blitz
             }
         }
 
+        if ('find' === $name) {
+            return call_user_func_array([$this->newQuery(), $name], $parameters);
+        }
+
         // QueryBuilder 객체인 $query 를 실행하여 DB 레코드를 받아오는 로직
-        if ('get' === $name || 'first' === $name || 'find' === $name || 'paginate' === $name) {
+        if ('get' === $name || 'first' === $name || 'paginate' === $name) {
             if ($this->models) {
                 return $this->models;
             }
@@ -655,7 +656,7 @@ class Blitz
                 return null;
             }
 
-            return call_user_func_array([$this, $name], func_get_args());
+            return call_user_func_array([$this, $name], $parameters);
         }
 
         // QueryBuilder 와 Repository 에서 정의하지 않은 모든 함수 처리
