@@ -1,0 +1,41 @@
+{
+    "name": "lichris/blitz",
+    "description": ":description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Heeseung Lee",
+            "email": "1541.hsl@gmail.com",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/lichris/blitz",
+    "keywords": ["Laravel", "Blitz"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lichris\\Blitz\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lichris\\Blitz\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lichris\\Blitz\\BlitzServiceProvider"
+            ],
+            "aliases": {
+                "Blitz": "Lichris\\Blitz\\Facades\\Blitz"
+            }
+        }
+    }
+}
