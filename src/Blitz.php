@@ -647,6 +647,15 @@ class Blitz
                 $this->query = $this->newQuery();
             }
 
+            return call_user_func_array([$this->newQuery(), $name], $parameters);
+        }
+
+        // QueryBuilder 객체인 $query 를 실행하여 DB 레코드를 받아오는 로직
+        if ('get' === $name || 'first' === $name || 'paginate' === $name) {
+            if ($this->models) {
+                return $this->models;
+            }
+
             return call_user_func_array([$this, $name], $parameters);
         }
 
