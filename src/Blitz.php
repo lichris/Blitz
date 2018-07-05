@@ -3,7 +3,7 @@
 namespace Lichris\Blitz;
 
 use BadMethodCallException;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Lichris\Blitz\Models\Model;
